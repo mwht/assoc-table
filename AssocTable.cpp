@@ -23,3 +23,21 @@ void AssocTable::insert(const char* key,int val) {
 	newNode->val = val;
 	head = newNode;
 }
+
+AssocTable::node* AssocTable::find(const char* key) const {
+	node* c = head;
+	while(c) {
+		if(!strcmp(key,c->key)) return c;
+		c = c->next;
+	}
+	return NULL;
+}	
+
+int& AssocTable::operator[](const char* key) {
+	node* n = find(key);
+	if(!n) {
+		insert(key,0);
+		n = head;
+	}
+	return n->val;
+}

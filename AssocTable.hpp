@@ -12,7 +12,7 @@ class AssocTable {
 			int val;
 			node(const char* m_key) {
 				next = NULL;
-				key = new char[strlen(key)+1];
+				key = new char[strlen(m_key)+1];
 				strcpy(key,m_key);
 			}
 			~node() {
