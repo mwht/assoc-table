@@ -31,7 +31,26 @@ AssocTable::node* AssocTable::find(const char* key) const {
 		c = c->next;
 	}
 	return NULL;
-}	
+}
+
+AssocTable::AssocTable (const AssocTable& asc)
+{
+  node *src, **dst;
+  head = NULL;
+  src = asc.head;
+  dst = &head;
+  while (src) {
+	*dst = new node (*src);
+	src = src->next;
+	dst = &((*dst)->next);
+  }
+}
+
+void AssocTable::swap(AssocTable& asc) {
+	node* n = head;
+	head = asc.head;
+	asc.head = n;
+}
 
 int& AssocTable::operator[](const char* key) {
 	node* n = find(key);
