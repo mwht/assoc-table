@@ -1,4 +1,6 @@
 #include "AssocTable.hpp"
+#define stricmp strcasecmp // workaround for g++
+#include <cstring>
 
 AssocTable::AssocTable() {
 	head = NULL; // create empty table
@@ -24,13 +26,21 @@ void AssocTable::insert(const char* key,int val) {
 	head = newNode;
 }
 
-AssocTable::node* AssocTable::find(const char* key) const {
+int& AssocTable::find(const char* key, bool caseSensitive) {
 	node* c = head;
 	while(c) {
-		if(!strcmp(key,c->key)) return c;
+		if(caseSensitive) {
+			if(!strcmp(key,c->key)) break;
+		} else {
+			if(!stricmp(key,c->key)) break;
+		}
 		c = c->next;
 	}
-	return NULL;
+	if(!c) {
+		insert(key,0);
+		c = head;
+	}
+	return c->val;
 }
 
 AssocTable::AssocTable (const AssocTable& asc)
@@ -53,10 +63,10 @@ void AssocTable::swap(AssocTable& asc) {
 }
 
 int& AssocTable::operator[](const char* key) {
-	node* n = find(key);
-	if(!n) {
-		insert(key,0);
-		n = head;
-	}
-	return n->val;
+	return find(key,true);
+}
+
+int& CIAssocTable::operator[](const char* key) {
+	return find(key,false);
+
 }

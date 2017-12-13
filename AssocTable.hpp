@@ -5,7 +5,7 @@
 #include <cstring>
 
 class AssocTable {
-	private:
+	protected:
 		struct node {
 			node* next;
 			char* key;
@@ -29,15 +29,21 @@ class AssocTable {
 			//private:
 		};
 		node* head;
+		int& find(const char*,bool);
+	private:
 		void insert(const char*,int);
 		void clear();
-		node* find(const char*) const;
 		void swap(AssocTable&);
 	public:
 		AssocTable();
 		AssocTable(const AssocTable&);
 		~AssocTable();
 		AssocTable& operator= (AssocTable&); 
+		int& operator[](const char* key);
+};
+
+class CIAssocTable: public AssocTable {
+	public:
 		int& operator[](const char* key);
 };
 
