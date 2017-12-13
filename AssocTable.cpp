@@ -11,7 +11,8 @@ AssocTable::~AssocTable() {
 }
 
 void AssocTable::clear() {
-	node* current = head,*nextNode;
+	node* current,*nextNode;
+	current = head;
 	while(current != NULL) {
 		nextNode = current->next;
 		delete current;
@@ -46,7 +47,6 @@ int& AssocTable::find(const char* key, bool caseSensitive) {
 AssocTable::AssocTable (const AssocTable& asc)
 {
   node *src, **dst;
-  head = NULL;
   src = asc.head;
   dst = &head;
   while (src) {
