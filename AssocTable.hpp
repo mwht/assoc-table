@@ -33,12 +33,11 @@ class AssocTable {
 	private:
 		void insert(const char*,int);
 		void clear();
-		void swap(AssocTable&);
 	public:
 		AssocTable();
 		AssocTable(const AssocTable&);
 		~AssocTable();
-		AssocTable& operator= (AssocTable&); 
+		AssocTable& operator= (AssocTable&);
 		int& operator[](const char* key);
 };
 

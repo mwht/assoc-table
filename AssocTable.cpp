@@ -61,12 +61,6 @@ AssocTable::AssocTable (const AssocTable& asc)
   }
 }
 
-void AssocTable::swap(AssocTable& asc) {
-	node* n = head;
-	head = asc.head;
-	asc.head = n;
-}
-
 int& AssocTable::operator[](const char* key) {
 	return find(key,true);
 }
