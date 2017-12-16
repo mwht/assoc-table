@@ -46,13 +46,18 @@ int& AssocTable::find(const char* key, bool caseSensitive) {
 
 AssocTable::AssocTable (const AssocTable& asc)
 {
-  node *src, **dst;
+  node *src, *dst;
   src = asc.head;
-  dst = &head;
+	dst = new node (*src);
+	head = dst;
   while (src) {
-	*dst = new node (*src);
-	src = src->next;
-	dst = &((*dst)->next);
+		src = src->next;
+		if(src == NULL) {
+			dst->next = NULL;
+			break;
+		}
+		dst->next = new node (*src);
+		dst = dst->next;
   }
 }
 
