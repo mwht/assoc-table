@@ -15,7 +15,7 @@ int main() {
 	ciat["alamakota"] = 1488;
 	cout << ciat["AlaMaKota"] << endl;
 
-	CIAssocTable ciat2 = ciat;
-	cout << ciat2["AlAmAkOtA"] << endl;
+	CIAssocTable ciat2 = at;
+	cout << ciat2["TeSt"] << endl;
 	return 0;
 }

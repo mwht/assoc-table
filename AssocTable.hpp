@@ -43,6 +43,8 @@ class AssocTable {
 
 class CIAssocTable: public AssocTable {
 	public:
+		CIAssocTable(): AssocTable() {}
+		CIAssocTable(const AssocTable& at): AssocTable(at) {}
 		int& operator[](const char* key);
 };
 
