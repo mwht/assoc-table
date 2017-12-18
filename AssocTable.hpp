@@ -33,7 +33,7 @@ class AssocTable {
 	private:
 		void insert(const char*,int);
 		void clear();
-		void copyTable(const AssocTable&);
+		void copy(const AssocTable&);
 	public:
 		AssocTable();
 		AssocTable(const AssocTable&);

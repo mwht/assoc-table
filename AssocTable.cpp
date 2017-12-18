@@ -7,7 +7,7 @@ AssocTable::AssocTable() {
 }
 
 AssocTable::~AssocTable() {
-	clear();
+	clear(); // clear table
 }
 
 void AssocTable::clear() {
@@ -44,7 +44,7 @@ int& AssocTable::find(const char* key, bool caseSensitive) {
 	return c->val;
 }
 
-void AssocTable::copyTable(const AssocTable& asc) {
+void AssocTable::copy(const AssocTable& asc) {
 	node *src, *dst;
 	src = asc.head;
 	dst = new node (*src);
@@ -63,14 +63,14 @@ void AssocTable::copyTable(const AssocTable& asc) {
 AssocTable& AssocTable::operator= (const AssocTable& asc) {
 	if(this != &asc) {
 		clear();
-		copyTable(asc);
+		copy(asc);
 	}
 	return *this;
 }
 
 AssocTable::AssocTable (const AssocTable& asc)
 {
-	copyTable(asc);
+	copy(asc);
 }
 
 int& AssocTable::operator[](const char* key) {
