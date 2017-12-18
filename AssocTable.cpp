@@ -44,13 +44,12 @@ int& AssocTable::find(const char* key, bool caseSensitive) {
 	return c->val;
 }
 
-AssocTable::AssocTable (const AssocTable& asc)
-{
-  node *src, *dst;
-  src = asc.head;
+void AssocTable::copyTable(const AssocTable& asc) {
+	node *src, *dst;
+	src = asc.head;
 	dst = new node (*src);
 	head = dst;
-  while (src) {
+	while (src) {
 		src = src->next;
 		if(src == NULL) {
 			dst->next = NULL;
@@ -58,7 +57,20 @@ AssocTable::AssocTable (const AssocTable& asc)
 		}
 		dst->next = new node (*src);
 		dst = dst->next;
-  }
+	}
+}
+
+AssocTable& AssocTable::operator= (const AssocTable& asc) {
+	if(this != &asc) {
+		clear();
+		copyTable(asc);
+	}
+	return *this;
+}
+
+AssocTable::AssocTable (const AssocTable& asc)
+{
+	copyTable(asc);
 }
 
 int& AssocTable::operator[](const char* key) {
