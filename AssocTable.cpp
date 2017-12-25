@@ -1,5 +1,9 @@
 #include "AssocTable.hpp"
+#ifdef _MSC_VER
+#define stricmp _stricmp // workaround for MSVC
+#else
 #define stricmp strcasecmp // workaround for g++
+#endif
 #include <cstring>
 
 AssocTable::AssocTable() {
