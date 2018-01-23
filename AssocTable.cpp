@@ -45,19 +45,13 @@ int& AssocTable::find(const char* key, bool caseSensitive) {
 }
 
 void AssocTable::copy(const AssocTable& asc) {
-	node *src, *dst;
-	src = asc.head;
-	dst = new node (*src);
-	head = dst;
-	while (src) {
+	node *src = asc.head;
+	while(src) {
 		src = src->next;
-		if(src == NULL) {
-			dst->next = NULL;
-			break;
-		}
-		dst->next = new node (*src);
-		dst = dst->next;
+		if(src != NULL)
+			insert(src->key,src->val);
 	}
+	head->next = NULL;
 }
 
 AssocTable& AssocTable::operator= (const AssocTable& asc) {
