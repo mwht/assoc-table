@@ -10,3 +10,7 @@ assoc-table
 # gedit at CTI
 
 *~
+
+# valgrind core dumps
+
+vgcore*
